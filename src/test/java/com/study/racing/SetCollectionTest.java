@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Set Collection에 대한 학습 테스트")
 public class SetCollectionTest {
+
 	private Set<Integer> numbers;
 
 	@BeforeEach
@@ -25,9 +26,9 @@ public class SetCollectionTest {
 	}
 
 	@Test
-	@DisplayName("요구사항 1")
+	@DisplayName("numbers 크기를 확인하는 테스트")
 	public void case_1() {
-		assertThat(numbers).size().isEqualTo(numbers.size());
+		assertThat(numbers).hasSize(3);
 	}
 
 	@Test
@@ -37,14 +38,14 @@ public class SetCollectionTest {
 		assertThat(numbers.contains(3)).isTrue();
 	}
 
-	@DisplayName("요구사항 2")
+	@DisplayName("numbers 입력 값이 존재하는지 테스트")
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2, 3})
 	public void case_2(int value) {
 		assertThat(numbers.contains(value)).isTrue();
 	}
 
-	@DisplayName("요구사항 3")
+	@DisplayName("입력 값에 따라 다른 반환값 테스트 하기")
 	@ParameterizedTest
 	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
 	public void case_3(int value, boolean rtnValue) {
